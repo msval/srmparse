@@ -48,6 +48,8 @@ var config = {}; // as above
 var inData = "20.66,35,66";
 var outData = translator.parse(inData);
 
+console.log(outData.temperature);
+
 ```
 
 Testing

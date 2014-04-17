@@ -17,7 +17,7 @@ Having some utility to parse this data in an easy way and with minimal
 configuration would be very time saving. The above mentioned example
 string could be parsed with a config like this:
 
-```json
+```javascript
 var config = {
 	parser : 'commaseparated',
 	mappings: [

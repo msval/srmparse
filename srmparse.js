@@ -1,39 +1,71 @@
-module.exports = function( config ) {
+module.exports = function(config) {
 	var mappings = config.mappings;
 	var parser = config.parser;
+	var separator = config.separator;
+
+	if (parser === 'fixedSizes' && mappings && mappings instanceof Array) {
+		var start = 0;
+		var mappingLength = mappings.length;
+		for (var j = 0; j < mappingLength; j++) {
+			mappings[j].start = start;
+			start += mappings[j].size;
+		}
+	}
 
 	function isNumNotEmpty(str) {
 		return !isNaN(str) && str !== "";
 	}
 
-	return {
-		parse: function( data ) {
-			var parsed = {};
+	function interpretData(dataType, data) {
+		var parsedData;
+		if (dataType === "int" && isNumNotEmpty(data)) {
+			parsedData = parseInt(data, 10);
+		} else if (dataType === "float" && isNumNotEmpty(data)) {
+			parsedData = parseFloat(data, 10);
+		}
+		return parsedData;
+	}
 
-			if (parser === 'commaseparated') {
-				if (mappings && mappings instanceof Array) {
+	function parsesymbolseparated(data) {
+		var parsed = {};
+		if (mappings && mappings instanceof Array) {
 
-					var dataArray = typeof data == "string" ? data.split(",") : [];
+			var dataArray = typeof data == "string" ? data.split(separator) : [];
 
-					var mappingLength = mappings.length;
-					for (var i = 0; i < mappingLength; i++) {
-						if (typeof dataArray[i] !== "undefined") {
-							var parsedData;
-
-							var dataType = mappings[i].type;
-							if (dataType === "int" && isNumNotEmpty(dataArray[i])) {
-								parsedData = parseInt(dataArray[i], 10);
-							} else if (dataType === "float" && isNumNotEmpty(dataArray[i])) {
-								parsedData = parseFloat(dataArray[i], 10);
-							}
-
-							parsed[mappings[i].name] = parsedData;
-						}
-					}
+			var mappingLength = mappings.length;
+			for (var i = 0; i < mappingLength; i++) {
+				if (typeof dataArray[i] !== "undefined") {
+					parsed[mappings[i].name] = interpretData(mappings[i].type, dataArray[i]);
 				}
 			}
+		}
+		return parsed;
+	}
 
-			return parsed;
+	function parseFixedSizes(data) {
+		var parsed = {};
+		if (mappings && mappings instanceof Array && typeof data == "string") {
+			for (var i = 0; i < mappingLength; i++) {
+				if (mappings[i].start < data.length) {
+					var dataPart = data.substring(mappings[i].start, mappings[i].start + mappings[i].size);
+					dataPart = dataPart.trim();
+					parsed[mappings[i].name] = interpretData(mappings[i].type, dataPart);
+				}
+			}
+		}
+		return parsed;
+	}
+
+	return {
+		parse: function( data ) {
+			if (parser === 'symbolseparated') {
+				return parsesymbolseparated(data);
+			} else if (parser === 'fixedSizes') {
+				return parseFixedSizes(data);
+			}
+
+			//default
+			return {};
 		}
 	};
 };

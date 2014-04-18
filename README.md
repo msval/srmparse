@@ -19,8 +19,9 @@ string could be parsed with a config like this:
 
 ```javascript
 var config = {
-	parser : 'commaseparated',
-	mappings: [
+	parser : 'symbolseparated',
+	separator : ',',
+	mappings : [
 		{
 			name: 'temperature',
 			type: 'float'
@@ -31,6 +32,29 @@ var config = {
 		},
 		{
 			name: 'soilHumidity',
+			type: 'int'
+		}
+	]
+};
+
+//fixed size parsing config
+
+var configFixedSize = {
+	parser : 'fixedSizes',
+	mappings : [
+		{
+			name: 'temperature',
+			size: 5,
+			type: 'float'
+		},
+		{
+			name: 'lightLevel',
+			size: 2,
+			type: 'int'
+		},
+		{
+			name: 'soilHumidity',
+			size: 2,
 			type: 'int'
 		}
 	]

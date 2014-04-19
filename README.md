@@ -68,6 +68,7 @@ Using
 var srmparse = require("srmparse");
 
 var config = {}; // as above
+var translator = srmparse(config);
 
 var inData = "20.66,35,66";
 var outData = translator.parse(inData);

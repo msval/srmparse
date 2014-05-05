@@ -38,7 +38,6 @@ var config = {
 };
 
 //fixed size parsing config
-
 var configFixedSize = {
 	parser : 'fixedSizes',
 	mappings : [
@@ -67,7 +66,7 @@ Using
 ```javascript
 var srmparse = require("srmparse");
 
-var config = {}; // as above
+var config = {}; // one of above configs
 var translator = srmparse(config);
 
 var inData = "20.66,35,66";
@@ -76,6 +75,12 @@ var outData = translator.parse(inData);
 console.log(outData.temperature);
 
 ```
+
+Types
+-----
+	- int
+	- float
+	- str
 
 Testing
 -------

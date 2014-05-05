@@ -22,7 +22,10 @@ module.exports = function(config) {
 			parsedData = parseInt(data, 10);
 		} else if (dataType === "float" && isNumNotEmpty(data)) {
 			parsedData = parseFloat(data, 10);
+		} else if (dataType === "str") {
+			parsedData = data;
 		}
+
 		return parsedData;
 	}
 

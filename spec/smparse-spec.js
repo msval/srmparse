@@ -1,7 +1,7 @@
 var srmparse = require("../srmparse");
 
 var configSymbolComma = {
-	parser : 'symbolseparated',
+	parser : 'symbolSeparated',
 	separator : ',',
 	mappings : [
 		{
@@ -24,7 +24,7 @@ var configSymbolComma = {
 };
 
 var configSymbolPipe = {
-	parser : 'symbolseparated',
+	parser : 'symbolSeparated',
 	separator : '|',
 	mappings : configSymbolComma.mappings
 };

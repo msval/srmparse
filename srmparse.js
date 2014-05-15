@@ -29,7 +29,7 @@ module.exports = function(config) {
 		return parsedData;
 	}
 
-	function parsesymbolseparated(data) {
+	function parseSymbolSeparated(data) {
 		var parsed = {};
 		if (mappings && mappings instanceof Array) {
 
@@ -61,8 +61,8 @@ module.exports = function(config) {
 
 	return {
 		parse: function( data ) {
-			if (parser === 'symbolseparated') {
-				return parsesymbolseparated(data);
+			if (parser === 'symbolSeparated') {
+				return parseSymbolSeparated(data);
 			} else if (parser === 'fixedSizes') {
 				return parseFixedSizes(data);
 			}

@@ -19,7 +19,7 @@ string could be parsed with a config like this:
 
 ```javascript
 var config = {
-	parser : 'symbolseparated',
+	parser : 'symbolSeparated',
 	separator : ',',
 	mappings : [
 		{

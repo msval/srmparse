@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/msval/srmparse/issues"
   },
-  "homepage": "https://github.com/msval/srmparse"
+  "homepage": "https://github.com/msval/srmparse",
+  "scripts": {
+    "test": "jasmine-node spec/*.spec.js"
+  }
 }

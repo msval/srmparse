@@ -1,5 +1,6 @@
 Serial message parser
 =====================
+[![Build Status](https://travis-ci.org/msval/srmparse.svg?branch=master)](https://travis-ci.org/msval/srmparse)
 
 About
 -----
@@ -95,6 +96,6 @@ Running the tests is also straight forward looks like. Jasmine locates
 the test js files in the spec folder automatically.
 
 ```bash
-jasmine-node .
+jasmine-node spec/*spec.js
 ```
 

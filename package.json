@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/msval/srmparse",
   "scripts": {
-    "test": "jasmine-node spec/*.spec.js"
+    "test": "jasmine-node spec/*spec.js"
   }
 }
